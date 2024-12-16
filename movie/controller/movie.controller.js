@@ -126,10 +126,13 @@ const movieComment = async (req, res) => {
 
     let { comments } = req.body;
     console.log("rat", comments);
+
+    // let movie = await Movie.findById(id)
+    // movie.comments.push({ text: comments });
+    // await movie.save();
+    
     let movie = await Movie.findByIdAndUpdate(
-      id,
-      { $push: { comments: { text: comments } } },
-      { new: true }
+      id,{ $push: { comments: { text: comments } } },{ new: true }
     );
 
     console.log("Updated movie with new rating", movie);
